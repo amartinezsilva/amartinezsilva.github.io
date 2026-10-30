@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrés Martínez Silva — Robotics Software Engineer</title>
+<meta name="description" content="Robotics software engineer working on state estimation, control and simulation for multi-robot and aerial systems. Publications, projects and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4F3; --surface:#E6EAE9; --ink:#1B2430; --muted:#566170; --rule:#C9D0D5;
+  --range:#C27D12; --link:#1E5C96; --robot:#1B2430;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#111920; --surface:#18222B; --ink:#E4E9ED; --muted:#9AA6B2; --rule:#2C3944;
+         --range:#E3A33A; --link:#7FB3E6; --robot:#E4E9ED; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:400 17px/1.6 "Schibsted Grotesk",system-ui,sans-serif}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--range);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* hero */
+header.hero{padding:72px 0 56px;border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+h1{font-weight:800;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.02;letter-spacing:-.025em;margin:0 0 14px}
+.role{font-size:1.25rem;font-weight:500;margin:0 0 18px}
+.lede{color:var(--muted);max-width:34em;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 16px;border:1.5px solid var(--ink);border-radius:6px;
+  color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--range)}
+.btn.primary:hover{background:var(--range);border-color:var(--range);color:#fff}
+
+/* ranging figure */
+figure.ranging{margin:0}
+figure.ranging svg{width:100%;height:auto;display:block}
+figure.ranging figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+.ring{fill:none;stroke:var(--range);stroke-width:1.4;opacity:0;transform-box:fill-box;transform-origin:center;vector-effect:non-scaling-stroke}
+.link-line{stroke:var(--range);stroke-width:1.2;stroke-dasharray:3 4;opacity:.55}
+.body{fill:var(--robot)}
+.tag{fill:var(--range)}
+.ground{stroke:var(--rule);stroke-width:1.2}
+@keyframes ping{0%{transform:scale(.03);opacity:.9}100%{transform:scale(1);opacity:0}}
+.ring{animation:ping 3.2s ease-out infinite}
+.ring.d2{animation-delay:1.07s}.ring.d3{animation-delay:2.14s}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.uav{animation:hover 4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+  .ring{animation:none;opacity:.35}.ring.d1{transform:scale(.4)}.ring.d2{transform:scale(.7)}
+  .uav{animation:none}
+}
+
+/* sections */
+section{padding:56px 0;border-bottom:1px solid var(--rule)}
+h2{font-size:1.75rem;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
+.intro{color:var(--muted);max-width:40em;margin:0 0 32px}
+
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.area{padding:22px 24px 6px 0}
+.area + .area{padding-left:24px;border-left:1px solid var(--rule)}
+.area h3{font-size:1.15rem;margin:0 0 6px}
+.area p{margin:0 0 14px;color:var(--muted);font-size:.97rem}
+.area ul{list-style:none;margin:0;padding:0}
+.area li{padding:12px 0;border-top:1px solid var(--rule)}
+.area li strong{display:block;font-weight:700}
+.area li span{display:block;font-size:.93rem;color:var(--muted)}
+.area li a{font-size:.93rem}
+
+.pubs{list-style:none;margin:0;padding:0;max-width:52em}
+.pubs li{padding:16px 0;border-top:1px solid var(--rule)}
+.pubs .t{font-weight:700;display:block}
+.pubs .m{color:var(--muted);font-size:.95rem;display:block}
+
+.timeline{list-style:none;margin:0;padding:0;max-width:52em}
+.timeline li{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--rule)}
+.timeline .when{color:var(--muted);font-size:.93rem;font-variant-numeric:tabular-nums}
+.timeline .what strong{display:block}
+.timeline .what span{color:var(--muted);font-size:.95rem}
+
+footer{padding:48px 0 64px}
+footer p{margin:0 0 8px}
+footer .small{color:var(--muted);font-size:.9rem}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .areas{grid-template-columns:1fr}
+  .area,.area + .area{padding:22px 0 6px;border-left:0}
+  .area + .area{border-top:1px solid var(--rule)}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  header.hero{padding:48px 0 40px}
+  .timeline li{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Andrés Martínez Silva</h1>
+      <p class="role">Robotics Software Engineer</p>
+      <p class="lede">I build state estimation, control and simulation software for robots, mostly teams of drones and ground vehicles. Three years of R&amp;D in European research projects, a first-author paper at ICRA 2026, and open-source tools used to test it all before it flies. Based in Seville, open to relocation in the EU and UK.</p>
+      <div class="actions">
+        <a class="btn primary" href="Andres_Martinez_Silva_CV.pdf" download>Download CV (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/andres-martinez-5ba0591ba">LinkedIn</a>
+        <a class="btn" href="https://github.com/amartinezsilva">GitHub</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=LnhqGS0AAAAJ">Google Scholar</a>
+        <a class="btn" href="mailto:andresmarsil77@gmail.com">Email</a>
+      </div>
+    </div>
+    <figure class="ranging" aria-hidden="false">
+      <svg viewBox="0 0 400 300" role="img" aria-labelledby="figtitle">
+        <title id="figtitle">A drone above a ground robot, with radio ranging pulses between them</title>
+        <defs><clipPath id="sky"><rect x="0" y="0" width="400" height="262"/></clipPath></defs>
+        <line class="ground" x1="20" y1="262" x2="380" y2="262"/>
+        <!-- ranging rings from the UGV anchor -->
+        <g clip-path="url(#sky)">
+        <circle class="ring d1" cx="200" cy="216" r="150"/>
+        <circle class="ring d2" cx="200" cy="216" r="150"/>
+        <circle class="ring d3" cx="200" cy="216" r="150"/>
+        </g>
+        <!-- UGV with anchors -->
+        <g transform="translate(140,222)">
+          <rect class="body" x="0" y="8" width="120" height="26" rx="4"/>
+          <rect class="body" x="22" y="-6" width="76" height="16" rx="3"/>
+          <circle class="body" cx="22" cy="38" r="9"/><circle class="body" cx="98" cy="38" r="9"/>
+          <circle class="tag" cx="6" cy="2" r="4"/><circle class="tag" cx="114" cy="2" r="4"/>
+        </g>
+        <!-- UAV with tags -->
+        <g class="uav">
+          <line class="link-line" x1="146" y1="224" x2="186" y2="78"/>
+          <line class="link-line" x1="254" y1="224" x2="214" y2="78"/>
+          <g transform="translate(200,66)">
+            <rect class="body" x="-22" y="-7" width="44" height="14" rx="4"/>
+            <line x1="-22" y1="0" x2="-48" y2="-10" stroke="currentColor" style="stroke:var(--robot)" stroke-width="3"/>
+            <line x1="22" y1="0" x2="48" y2="-10" stroke="currentColor" style="stroke:var(--robot)" stroke-width="3"/>
+            <ellipse class="body" cx="-48" cy="-13" rx="18" ry="3"/>
+            <ellipse class="body" cx="48" cy="-13" rx="18" ry="3"/>
+            <circle class="tag" cx="-14" cy="12" r="4"/><circle class="tag" cx="14" cy="12" r="4"/>
+          </g>
+        </g>
+      </svg>
+      <figcaption>Ultra-Wideband ranging between a drone and a ground robot, the core of my multi-robot localization work.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section id="work">
+  <div class="wrap">
+    <h2>What I work on</h2>
+    <p class="intro">My work sits where estimation, control and simulation meet: algorithms that run on real robots, and the tools to test them safely first.</p>
+    <div class="areas">
+      <div class="area">
+        <h3>State estimation and sensor fusion</h3>
+        <p>Relative localization for drone and ground-robot teams, fusing UWB, radar, IMU and wheel odometry with factor graphs.</p>
+        <ul>
+          <li><strong>Radio-based multi-robot localization</strong>
+            <span>ROS 2, C++, Ceres. Outperforms closed-form baselines; first-author paper at ICRA 2026.</span>
+            <a href="https://github.com/amartinezsilva/mr-radio-localization">Code</a> ·
+            <a href="https://arxiv.org/abs/2509.26558">Paper</a> ·
+            <a href="https://doi.org/10.7910/DVN/KNKWMJ">Dataset</a></li>
+        </ul>
+      </div>
+      <div class="area">
+        <h3>Control and guidance</h3>
+        <p>From UAV guidance and autonomous landing to model-based control of robot actuators.</p>
+        <ul>
+          <li><strong>Vision-based autonomous landing</strong>
+            <span>DELOREAN (H2020). Flew in the project's public demo with Correos and landed reliably in strong wind.</span>
+            <a href="https://doi.org/10.1007/978-3-031-21062-4_32">ROBOT2022 paper</a></li>
+          <li><strong>Haru social robot control stack</strong>
+            <span>Lead maintainer for a Honda Research Institute Japan project: system identification, PID and MPC, 4 releases in 4 months.</span></li>
+          <li><strong>5D guidance for U-space</strong>
+            <span>Time-constrained guidance for unmanned aircraft in a joint Airbus–CATEC research unit.</span></li>
+        </ul>
+      </div>
+      <div class="area">
+        <h3>Robotics simulation</h3>
+        <p>Simulators and Software-in-the-Loop pipelines that make field work faster and safer.</p>
+        <ul>
+          <li><strong>UWBPX4Sim</strong>
+            <span>Realistic UWB simulation for PX4 drone and rover fleets in Gazebo, with LOS/NLOS noise models. Presented at ICRA 2026 and ROSCon Spain 2026.</span>
+            <a href="https://github.com/amartinezsilva/UWBPX4Sim">Repository</a></li>
+          <li><strong>HuNavSim for Webots</strong>
+            <span>Plugin that brings simulated pedestrians into Webots for human-aware navigation.</span>
+            <a href="https://github.com/robotics-upo/hunav_webots_wrapper">Repository</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <h2>Publications and talks</h2>
+    <ul class="pubs">
+      <li><span class="t">Radio-based Multi-Robot Odometry and Relative Localization</span>
+        <span class="m">A. Martínez-Silva, D. Alejo, L. Merino, F. Caballero. IEEE ICRA 2026. <a href="https://arxiv.org/abs/2509.26558">arXiv</a></span></li>
+      <li><span class="t">UWBPX4Sim: Ultra-Wideband simulator for multi-robot applications</span>
+        <span class="m">A. Martínez-Silva et al. ICRA 2026 Workshop on Robot Meets GNSS and Ranging, Vienna. Also a talk at ROSCon Spain 2026, Valencia.</span></li>
+      <li><span class="t">Autonomous Landing Strategy for Vertiports: A Preliminary Case Study</span>
+        <span class="m">A. Martínez, P. J. Sánchez-Cuevas, M. A. Trujillo, A. Viguria. ROBOT2022, Springer. <a href="https://doi.org/10.1007/978-3-031-21062-4_32">DOI</a></span></li>
+      <li><span class="t">HuNavSim 2.0: An Enhanced Human Navigation Simulator for Human-Aware Robot Navigation</span>
+        <span class="m">M. Escudero-Jiménez, N. Pérez-Higueras, A. Martínez-Silva, F. Caballero, L. Merino. ROBOT 2025, Springer. <a href="https://doi.org/10.1007/978-3-032-30156-7_25">DOI</a></span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li><span class="when">2025 – 2026</span>
+        <span class="what"><strong>Research Engineer, Service Robotics Lab, Universidad Pablo de Olavide</strong>
+        <span>Multi-robot UWB and radar localization; Haru social robot software and control.</span></span></li>
+      <li><span class="when">2022 – 2024</span>
+        <span class="what"><strong>R&amp;D Engineer, Autonomous Systems Unit, FADA-CATEC</strong>
+        <span>UAV landing, guidance and tooling in DELOREAN, AGORA and AERIAL-CORE.</span></span></li>
+      <li><span class="when">2023 – 2025</span>
+        <span class="what"><strong>MEng in Robotics, Graphics and Computer Vision, Universidad de Zaragoza</strong>
+        <span>Thesis on radio-based multi-robot odometry and localization.</span></span></li>
+      <li><span class="when">2015 – 2022</span>
+        <span class="what"><strong>BEng and MSc in Robotics and Automation, Universidad de Sevilla</strong>
+        <span>Master's thesis on autonomous landing for vertiports (10/10).</span></span></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Get in touch:</strong> <a href="mailto:andresmarsil77@gmail.com">andresmarsil77@gmail.com</a></p>
+    <p class="small">The full CV has every project, figure and certificate: <a href="Andres_Martinez_Silva_CV.pdf" download>download it as a PDF</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
