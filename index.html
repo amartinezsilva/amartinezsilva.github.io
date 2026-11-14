@@ -72,6 +72,8 @@ h2{font-size:1.75rem;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
 .area li strong{display:block;font-weight:700}
 .area li span{display:block;font-size:.93rem;color:var(--muted)}
 .area li a{font-size:.93rem}
+.area video{display:block;width:100%;height:auto;border-radius:6px;margin:10px 0 6px;background:var(--surface)}
+.area .cap{font-size:.82rem;color:var(--muted);margin:0 0 6px}
 
 .pubs{list-style:none;margin:0;padding:0;max-width:52em}
 .pubs li{padding:16px 0;border-top:1px solid var(--rule)}
@@ -175,9 +177,12 @@ footer .small{color:var(--muted);font-size:.9rem}
         <p>Relative localization for drone and ground-robot teams, fusing UWB, radar, IMU and wheel odometry with factor graphs.</p>
         <ul>
           <li><strong>Radio-based multi-robot localization</strong>
-            <span>ROS 2, C++, Ceres. Outperforms closed-form baselines; first-author paper at ICRA 2026.</span>
+            <span>ROS 2, C++, with Ceres and GTSAM backends (GTSAM 1.5–2× faster, about 2 ms per step). On real data, the drone's trajectory error is about 1.2 % of the distance flown. First-author paper published at ICRA 2026.</span>
+            <video class="demo" src="assets/mr-radio-hallway.mp4" poster="assets/mr-radio-hallway.jpg" width="600" height="680" autoplay muted loop playsinline preload="metadata" aria-label="Simulated building: a ground robot explores the rooms while a drone patrols the hallway and flies outside; plots compare odometry alone with odometry plus UWB"></video>
+            <p class="cap">A ground robot explores the rooms while a drone flies the hallway and outside. With UWB, the ground robot's error stays near 0.8 m, against 3.2 m with odometry alone.</p>
             <a href="https://github.com/amartinezsilva/mr-radio-localization">Code</a> ·
-            <a href="https://arxiv.org/abs/2509.26558">Paper</a> ·
+            <a href="https://doi.org/10.1109/ICRA57385.2026.11696767">Paper</a> ·
+            <a href="https://www.youtube.com/watch?v=zTdIhjTZPeA">Video</a> ·
             <a href="https://doi.org/10.7910/DVN/KNKWMJ">Dataset</a></li>
         </ul>
       </div>
@@ -199,7 +204,9 @@ footer .small{color:var(--muted);font-size:.9rem}
         <p>Simulators and Software-in-the-Loop pipelines that make field work faster and safer.</p>
         <ul>
           <li><strong>UWBPX4Sim</strong>
-            <span>Realistic UWB simulation for PX4 drone and rover fleets in Gazebo, with LOS/NLOS noise models. Presented at ICRA 2026 and ROSCon Spain 2026.</span>
+            <span>UWB ranging (TWR and TDoA) for PX4 drone and rover fleets in Gazebo, calibrated on three real-world datasets, obstacles and materials included. Presented at ICRA 2026 and ROSCon Spain 2026.</span>
+            <video class="demo" src="assets/uwbpx4sim-util-nlos.mp4" poster="assets/uwbpx4sim-util-nlos.jpg" width="640" height="468" autoplay muted loop playsinline preload="metadata" aria-label="A simulated drone replaying a real UTIL dataset flight among eight UWB anchors, with cabinets blocking some links"></video>
+            <p class="cap">Replaying a real UTIL dataset flight, with cabinets blocking four anchors.</p>
             <a href="https://github.com/amartinezsilva/UWBPX4Sim">Repository</a></li>
           <li><strong>HuNavSim for Webots</strong>
             <span>Plugin that brings simulated pedestrians into Webots for human-aware navigation.</span>
@@ -216,7 +223,7 @@ footer .small{color:var(--muted);font-size:.9rem}
     <div class="pub-grid">
     <ul class="pubs">
       <li><span class="t">Radio-based Multi-Robot Odometry and Relative Localization</span>
-        <span class="m">A. Martínez-Silva, D. Alejo, L. Merino, F. Caballero. IEEE ICRA 2026. <a href="https://arxiv.org/abs/2509.26558">arXiv</a></span></li>
+        <span class="m">A. Martínez-Silva, D. Alejo, L. Merino, F. Caballero. IEEE ICRA 2026, pp. 17557–17564. <a href="https://doi.org/10.1109/ICRA57385.2026.11696767">DOI</a> · <a href="https://arxiv.org/abs/2509.26558">arXiv</a> · <a href="https://www.youtube.com/watch?v=zTdIhjTZPeA">Video</a></span></li>
       <li><span class="t">UWBPX4Sim: Ultra-Wideband simulator for multi-robot applications</span>
         <span class="m">A. Martínez-Silva et al. ICRA 2026 Workshop on Robot Meets GNSS and Ranging, Vienna. Also a talk at ROSCon Spain 2026, Valencia.</span></li>
       <li><span class="t">Autonomous Landing Strategy for Vertiports: A Preliminary Case Study</span>
@@ -259,6 +266,14 @@ footer .small{color:var(--muted);font-size:.9rem}
     <p class="small">The full CV has every project, figure and certificate: <a href="Andres_Martinez_Silva_CV.pdf" download>download it as a PDF</a>.</p>
   </div>
 </footer>
+
+<script>
+try{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('video.demo').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.controls=true;});
+  }
+}catch(e){}
+</script>
 
 </body>
 </html>
