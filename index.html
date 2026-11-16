@@ -89,11 +89,13 @@ h2{font-size:1.75rem;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
 .who{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin:0 0 14px}
 .who img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--rule)}
 .who h1{margin:0}
-.pub-grid{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start}
+.pub-grid{display:grid;grid-template-columns:1fr 270px;gap:40px;align-items:start}
 .pub-grid figure{margin:0}
+.talks{display:grid;gap:20px}
 .pub-grid img{width:100%;height:auto;display:block;border-radius:6px}
 .pub-grid figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
-@media (max-width:860px){.pub-grid{grid-template-columns:1fr}.pub-grid figure{max-width:420px}}
+@media (max-width:860px){.pub-grid{grid-template-columns:1fr}.talks{grid-template-columns:1fr 1fr;align-items:start}}
+@media (max-width:520px){.talks{grid-template-columns:1fr}}
 @media (max-width:520px){.who img{width:72px;height:72px}}
 
 footer{padding:48px 0 64px}
@@ -170,7 +172,7 @@ footer .small{color:var(--muted);font-size:.9rem}
 <section id="work">
   <div class="wrap">
     <h2>What I work on</h2>
-    <p class="intro">My work sits where estimation, control and simulation meet: algorithms that run on real robots, and the tools to test them safely first.</p>
+    <p class="intro">My work sits where estimation, simulation and control meet: algorithms that run on real robots, and the tools to test them safely first.</p>
     <div class="areas">
       <div class="area">
         <h3>State estimation and sensor fusion</h3>
@@ -178,25 +180,12 @@ footer .small{color:var(--muted);font-size:.9rem}
         <ul>
           <li><strong>Radio-based multi-robot localization</strong>
             <span>ROS 2, C++, with Ceres and GTSAM backends (GTSAM 1.5–2× faster, about 2 ms per step). On real data, the drone's trajectory error is about 1.2 % of the distance flown. First-author paper published at ICRA 2026.</span>
-            <video class="demo" src="assets/mr-radio-hallway.mp4" poster="assets/mr-radio-hallway.jpg" width="600" height="680" autoplay muted loop playsinline preload="metadata" aria-label="Simulated building: a ground robot explores the rooms while a drone patrols the hallway and flies outside; plots compare odometry alone with odometry plus UWB"></video>
-            <p class="cap">A ground robot explores the rooms while a drone flies the hallway and outside. With UWB, the ground robot's error stays near 0.8 m, against 3.2 m with odometry alone.</p>
+            <video class="demo" src="assets/icra-real-dataset.mp4" poster="assets/icra-real-dataset.jpg" width="640" height="368" autoplay muted loop playsinline preload="metadata" aria-label="Real-world experiment: a drone flies over an open hall while a small ground robot drives below it"></video>
+            <p class="cap">Real-world dataset from the ICRA 2026 paper: drone and ground robot moving together, with UWB, radar and odometry on board (1.5× speed).</p>
             <a href="https://github.com/amartinezsilva/mr-radio-localization">Code</a> ·
             <a href="https://doi.org/10.1109/ICRA57385.2026.11696767">Paper</a> ·
             <a href="https://www.youtube.com/watch?v=zTdIhjTZPeA">Video</a> ·
             <a href="https://doi.org/10.7910/DVN/KNKWMJ">Dataset</a></li>
-        </ul>
-      </div>
-      <div class="area">
-        <h3>Control and guidance</h3>
-        <p>From UAV guidance and autonomous landing to model-based control of robot actuators.</p>
-        <ul>
-          <li><strong>Vision-based autonomous landing</strong>
-            <span>DELOREAN (H2020). Flew in the project's public demo with Correos and landed reliably in strong wind.</span>
-            <a href="https://doi.org/10.1007/978-3-031-21062-4_32">ROBOT2022 paper</a></li>
-          <li><strong>Haru social robot control stack</strong>
-            <span>Lead maintainer for a Honda Research Institute Japan project: system identification, PID and MPC, 4 releases in 4 months.</span></li>
-          <li><strong>5D guidance for U-space</strong>
-            <span>Time-constrained guidance for unmanned aircraft in a joint Airbus–CATEC research unit.</span></li>
         </ul>
       </div>
       <div class="area">
@@ -207,10 +196,27 @@ footer .small{color:var(--muted);font-size:.9rem}
             <span>UWB ranging (TWR and TDoA) for PX4 drone and rover fleets in Gazebo, calibrated on three real-world datasets, obstacles and materials included. Presented at ICRA 2026 and ROSCon Spain 2026.</span>
             <video class="demo" src="assets/uwbpx4sim-util-nlos.mp4" poster="assets/uwbpx4sim-util-nlos.jpg" width="640" height="468" autoplay muted loop playsinline preload="metadata" aria-label="A simulated drone replaying a real UTIL dataset flight among eight UWB anchors, with cabinets blocking some links"></video>
             <p class="cap">Replaying a real UTIL dataset flight, with cabinets blocking four anchors.</p>
+            <video class="demo" src="assets/mr-radio-hallway.mp4" poster="assets/mr-radio-hallway.jpg" width="600" height="680" autoplay muted loop playsinline preload="metadata" aria-label="Simulated building: a ground robot explores the rooms while a drone patrols the hallway and flies outside; plots compare odometry alone with odometry plus UWB"></video>
+            <p class="cap">Building scenario in UWBPX4Sim, with UWB crossing walls: a ground robot explores the rooms while a drone flies the hallway and outside. With UWB, the ground robot's error stays near 0.8 m, against 3.2 m with odometry alone.</p>
             <a href="https://github.com/amartinezsilva/UWBPX4Sim">Repository</a></li>
           <li><strong>HuNavSim for Webots</strong>
             <span>Plugin that brings simulated pedestrians into Webots for human-aware navigation.</span>
             <a href="https://github.com/robotics-upo/hunav_webots_wrapper">Repository</a></li>
+        </ul>
+      </div>
+      <div class="area">
+        <h3>Control and guidance</h3>
+        <p>From UAV guidance and autonomous landing to model-based control of robot actuators.</p>
+        <ul>
+          <li><strong>Vision-based autonomous landing</strong>
+            <span>DELOREAN (H2020). Flew in the project's public demo with Correos and landed reliably in strong wind.</span>
+            <a href="https://doi.org/10.1007/978-3-031-21062-4_32">ROBOT2022 paper</a></li>
+          <li><strong>Haru social robot control stack</strong>
+            <span>Lead maintainer for a Honda Research Institute Japan project: system identification, PID and MPC, 4 releases in 4 months.</span>
+            <video class="demo" src="assets/haru-control.mp4" poster="assets/haru-control.jpg" width="480" height="654" autoplay muted loop playsinline preload="metadata" aria-label="The Haru tabletop robot held and tilted by hand while its neck and eye screens move under closed-loop control"></video>
+            <p class="cap">Haru's neck and eyes under closed-loop control while the robot is moved by hand.</p></li>
+          <li><strong>5D guidance for U-space</strong>
+            <span>Time-constrained guidance for unmanned aircraft in a joint Airbus–CATEC research unit.</span></li>
         </ul>
       </div>
     </div>
@@ -231,10 +237,16 @@ footer .small{color:var(--muted);font-size:.9rem}
       <li><span class="t">HuNavSim 2.0: An Enhanced Human Navigation Simulator for Human-Aware Robot Navigation</span>
         <span class="m">M. Escudero-Jiménez, N. Pérez-Higueras, A. Martínez-Silva, F. Caballero, L. Merino. ROBOT 2025, Springer. <a href="https://doi.org/10.1007/978-3-032-30156-7_25">DOI</a></span></li>
     </ul>
+    <div class="talks">
     <figure>
       <img src="assets/icra-poster.jpg" alt="Andrés standing next to his ICRA 2026 poster on radio-based multi-robot localization" width="800" height="886" loading="lazy">
       <figcaption>Presenting radio-based multi-robot localization at ICRA 2026, Vienna.</figcaption>
     </figure>
+    <figure>
+      <img src="assets/robot2022-talk.jpg" alt="Andrés presenting the paper Autonomous Landing Strategy for Vertiports at ROBOT2022" width="940" height="510" loading="lazy">
+      <figcaption>Presenting the vertiport landing paper at ROBOT2022.</figcaption>
+    </figure>
+    </div>
     </div>
   </div>
 </section>
