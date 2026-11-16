@@ -179,13 +179,22 @@ footer .small{color:var(--muted);font-size:.9rem}
         <p>Relative localization for drone and ground-robot teams, fusing UWB, radar, IMU and wheel odometry with factor graphs.</p>
         <ul>
           <li><strong>Radio-based multi-robot localization</strong>
-            <span>ROS 2, C++, with Ceres and GTSAM backends (GTSAM 1.5–2× faster, about 2 ms per step). On real data, the drone's trajectory error is about 1.2 % of the distance flown. First-author paper published at ICRA 2026.</span>
+            <span>ROS 2, C++. Fuses UWB ranging and radar ego-motion with odometry in a pose graph to find where the drone is relative to the ground robot. On real data, the drone's trajectory error is about 1.2 % of the distance flown. First-author paper published at ICRA 2026.</span>
             <video class="demo" src="assets/icra-real-dataset.mp4" poster="assets/icra-real-dataset.jpg" width="640" height="368" autoplay muted loop playsinline preload="metadata" aria-label="Real-world experiment: a drone flies over an open hall while a small ground robot drives below it"></video>
             <p class="cap">Real-world dataset from the ICRA 2026 paper: drone and ground robot moving together, with UWB, radar and odometry on board (1.5× speed).</p>
             <a href="https://github.com/amartinezsilva/mr-radio-localization">Code</a> ·
             <a href="https://doi.org/10.1109/ICRA57385.2026.11696767">Paper</a> ·
-            <a href="https://www.youtube.com/watch?v=zTdIhjTZPeA">Video</a> ·
-            <a href="https://doi.org/10.7910/DVN/KNKWMJ">Dataset</a></li>
+            <a href="https://www.youtube.com/watch?v=zTdIhjTZPeA">Video</a></li>
+          <li><strong>Ceres and GTSAM pose-graph backends</strong>
+            <span>Added a GTSAM 4.3 backend next to Ceres behind a solver-independent interface. In early benchmarks it gives identical results 1.5–2× faster, at about 2 ms per optimization step.</span>
+            <a href="https://github.com/amartinezsilva/mr-radio-localization">Code</a> ·
+            <a href="https://www.linkedin.com/posts/andr%C3%A9s-mart%C3%ADnez-5ba0591ba_robotics-uwb-localization-ugcPost-7527063487538216960-fKxV/">Write-up</a></li>
+          <li><strong>Open UAV-UGV radio dataset</strong>
+            <span>The real-world ROS 2 bag behind the paper: a ground robot with four UWB anchors and a 4D radar, and a drone with two UWB tags and its own radar, with LiDAR-based ground truth. Open under CC BY-SA 4.0.</span>
+            <video class="demo" src="assets/icra-ground-truth.mp4" poster="assets/icra-ground-truth.jpg" width="640" height="304" autoplay muted loop playsinline preload="metadata" aria-label="LiDAR point cloud of the test hall, used to compute the ground-truth trajectories"></video>
+            <p class="cap">LiDAR map of the test hall, used for the ground-truth trajectories.</p>
+            <a href="https://doi.org/10.7910/DVN/KNKWMJ">Dataset</a> ·
+            <a href="https://github.com/amartinezsilva/mr-radio-localization/blob/main/docs/dataset.md">How to use it</a></li>
         </ul>
       </div>
       <div class="area">
